@@ -1,0 +1,86 @@
+/* Start of header */
+.header-h1 {
+    /* position: absolute;
+    top: 80px;
+    left: 50px; */
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 120px;
+}
+
+.gallery {
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+/* End of header */
+
+/* Start of main */
+h1, h2{
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.h2 {
+    position: absolute;
+    top: 130px;
+    left: 50px;
+}
+
+.breakfastcontainer, .mainscontainer, .dessertcontainer {
+    margin-bottom: 15px;
+}
+#breakfastbtn {
+    display: flex;
+    justify-content: center;
+    align-self: baseline;
+    border: 1px solid rgba(234, 144, 0, 0.816);
+    background-color: rgba(234, 144, 0, 0.816);
+    margin-top: 0px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#mainsbtn {
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-self: baseline;
+    border: 1px solid rgba(234, 144, 0, 0.816);
+    background-color: rgba(234, 144, 0, 0.816);
+    margin-top: 0px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#dessertbtn {
+    display: flex;
+    justify-content: center;
+    align-self: baseline;
+    border: 1px solid rgba(234, 144, 0, 0.816);
+    background-color: rgba(234, 144, 0, 0.816);
+    margin-top: 0px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+/* End of main */
+
+/* Start of aside */
+
+.about {
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+/* End of aside */

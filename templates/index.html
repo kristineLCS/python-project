@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+  <h1 class="header-h1">Welcome to Cordon Remy!</h1>
+
+  <div class="gallery">
+      <div class="breakfastcontainer">
+        <a href="{{ url_for('breakfast') }}">
+          <img src="{{ url_for('static', filename='images/pancakes.png') }}" alt="pancakes" width="400px" height="400px">
+          <p id="breakfastbtn">Breakfast</p>
+        </a>
+    </div>
+
+    <div class="mainscontainer">
+      <a href="{{ url_for('mains') }}">
+        <img src="{{ url_for('static', filename='images/beefbroccoli.png') }}" alt="beef and broccoli" width="400px" height="400px">
+        <p id="mainsbtn">Mains</p>
+      </a>
+    </div>
+
+    <div class="dessertcontainer">
+      <a href="{{ url_for('dessert') }}">
+        <img src="{{ url_for('static', filename='images/redvelvet.png') }}" alt="red velvet cake" width="400px" height="400px">
+        <p id="dessertbtn">Dessert</p>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="newrecipes">
+    <h3>Latest Recipes</h3>
+  </div>
+{% endblock %}
+
+
+{% block aside %}
+<div class="about">
+  <h3>Clueless on what to make for dinner? What to bring to a party? What to make to satisfy a sweet or savoury craving?</h3>
+  <p>Welcome to <strong>Cordon Remy</strong> — where culinary magic meets everyday cooking! Whether you're a seasoned chef or just learning to boil water, we've got recipes to tickle your taste buds and spark your creativity.
+    Share your own delicious creations, discover new favorites, and make your kitchen the tastiest place on earth!</p>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Cordon Remy!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block head %}
+    {% endblock %}
+  </head>
+
+  <body>
+    <div id="background">
+        <header>
+          <div class="graphic">
+            <a href="{{ url_for('home') }}"><img id="navgraphic" src="{{ url_for('static', filename='images/graphic.png') }}" alt="Cordon Remy" width="200px" height="40px"></a>
+          </div>
+
+          <nav>
+            <div class="sidebar" id="mysidebar">
+              <button type="button" id="hidesidebar"><img src="{{ url_for('static', filename='images/close-sidebar-btn.png') }}" alt="sidebar button" height="24px" width="24px"></button>
+              <input class="searchbar" type="text" placeholder="Search...">
+              <button type="button" id="searchbtn"><img src="{{ url_for('static', filename='images/search-btn.png') }}" alt="search button" height="24px" width="24px"></button>
+              <ul>
+                <li class="home"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="login"><a href="{{ url_for('login') }}">Log-in / Sign-up</a></li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+
+      <main>
+        <div class="navbar">
+          <button type="submit" id="showsidebar"><img src="{{ url_for('static', filename='images/show-sidebar-btn.png') }}" alt="sidebar button" height="24px" width="24px"></button>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      <aside>
+        {% block aside %}
+        {% endblock %}
+      </aside>
+
+      <footer>
+        <p>Last updated: 30/09/24</p>
+        <p>Copyright &copy; 2024</p>
+      </footer>
+
+      <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    </div>
+  </body>
+</html>
