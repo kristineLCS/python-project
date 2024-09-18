@@ -17,3 +17,14 @@ function hideSidebarBtn() {
     mySideBar.style.display = 'none';
 }
 // End of sidebar
+
+// Start of form validation
+const username = document.getElementById('username').value;
+const password = document.getElementById('password').value;
+
+if (username === "" || password === "") {
+    return false;
+}
+
+
+// End of form validation
