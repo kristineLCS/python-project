@@ -11,8 +11,33 @@
           Form validation for login/sign up-->
       <div class="formbox">
         <div class="loginbox">
-          <h1 class="main-h1">Login or Sign-up</h1>
-          <h4>Dont' have an account? Sign up <a href="sign-up.html">here</a></h4>
+          <h1 class="main-h1">Login</h1>
+          <form action="/login" method="post" id="login">
+
+            <div class="input-field">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" placeholder="Enter username" required>
+              <small id="emailerror">Error</small>
+              <i class="fa-solid fa-circle-check"></i>
+              <i class="fa-solid fa-circle-exclamation"></i>
+
+            </div>
+
+            <div class="input-field">
+              <label for="passowrd">Password</label>
+              <input type="text" id="password" name="password" placeholder="********" required>
+              <small id="passworderror">Error</small>
+              <i class="fa-solid fa-circle-check"></i>
+              <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+
+            <div class="input-field">
+              <button type="submit" class="submitbtn">Log-in</button>
+            </div>
+
+          </form>
+          <h4>Don't have an account? Sign up <a href="sign-up.html" id="here">here</a></h4>
+
         </div>
       </div>
     </div>
