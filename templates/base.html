@@ -23,10 +23,36 @@
               <button type="button" id="searchbtn"><img src="{{ url_for('static', filename='images/search-btn.png') }}" alt="search button" height="24px" width="24px"></button>
               <ul>
                 <li class="home"><a href="{{ url_for('home') }}">Home</a></li>
-                <li class="login"><a href="{{ url_for('login') }}">Log-in / Sign-up</a></li>
               </ul>
+
+              <div class="login-logout">
+                {% if session['username'] %}
+                <!-- <span class="navbar-text"></span> -->
+                <ul class="nav-logout">
+                  <li class="account"><a href="{{ url_for('account') }}">Account</a></li>
+                  <li class="logout">
+                    <a class="logout-link active" href="{{ url_for('logout') }}">Logout</a>
+                  </li>
+                </ul>
+                {% else %}
+                <ul class="nav-login">
+                  <li class="login">
+                    <a class="login-link active" href="{{ url_for('login') }}">Login</a>
+                  </li>
+                </ul>
+                {% endif %}
+              </div>
+
+              <!-- <div class="signup-logout"></div>
+                {% if session['email'] %}
+                <ul class="nav-logout">
+                  <li class="account"><a href="{{ url_for('account') }}">Account</a></li>
+                </ul>
+                {% endif %}
+              </div> -->
             </div>
           </nav>
+
         </header>
 
       <main>

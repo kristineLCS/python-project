@@ -86,13 +86,13 @@ html, body {
 }
 
 
-/* Start of Header */
+/* End of Header */
 
 /* Start of nav */
 input[type=text] {
     background-color: rgba(255, 255, 255, 0.381);
     border: 0px;
-    text-decoration: underline;
+    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,6 +162,21 @@ a {
     color: rgb(0, 0, 0);
 }
 
+.account{
+    list-style-type: none;
+    position: absolute;
+    top: 180px;
+    left: 15px;
+    color: rgb(0, 0, 0);
+}
+
+.logout-link {
+    list-style-type: none;
+    position: absolute;
+    top: 230px;
+    left: 20px;
+    color: rgb(0, 0, 0);
+}
 /* .contact {
     list-style-type: none;
     position: absolute;
@@ -211,7 +226,9 @@ a {
 #showsidebar button{
     list-style-type: none;
 }
+
 /* End of nav */
+
 
 /* Start of main */
 h1, h2, p, li{
