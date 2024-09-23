@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/categories.css') }}">
+
+    <title>{{ recipe.title }}</title>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ recipe.category }} : {{ recipe.title }}</h1>
+    <small>Posted by {{ recipe.author }}</small>
+
+    <h3>Vegan : {{ recipe.vegan }}</h3>
+    <h3> Servings : {{ recipe.servings }}</h3>
+
+
+    <h2>Ingredients</h2>
+    <ul>
+        {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Instructions</h2>
+    <ol>
+        {% for step in recipe.instructions %}
+            <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+
+    <a class="breakfastpage" href="{{ url_for('show_breakfast_recipes') }}">Back to Breakfast Recipes</a>
+{% endblock %}
