@@ -9,21 +9,21 @@
 
   <div class="gallery">
       <div class="breakfastcontainer">
-        <a href="{{ url_for('breakfast') }}">
+        <a href="{{ url_for('show_breakfast_recipes') }}">
           <img src="{{ url_for('static', filename='images/pancakes.png') }}" alt="pancakes" width="400px" height="400px">
           <p id="breakfastbtn">Breakfast</p>
         </a>
     </div>
 
     <div class="mainscontainer">
-      <a href="{{ url_for('mains') }}">
+      <a href="{{ url_for('show_mains_recipes') }}">
         <img src="{{ url_for('static', filename='images/beefbroccoli.png') }}" alt="beef and broccoli" width="400px" height="400px">
         <p id="mainsbtn">Mains</p>
       </a>
     </div>
 
     <div class="dessertcontainer">
-      <a href="{{ url_for('dessert') }}">
+      <a href="{{ url_for('show_dessert_recipes') }}">
         <img src="{{ url_for('static', filename='images/redvelvet.png') }}" alt="red velvet cake" width="400px" height="400px">
         <p id="dessertbtn">Dessert</p>
       </a>

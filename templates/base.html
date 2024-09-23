@@ -27,7 +27,6 @@
 
               <div class="login-logout">
                 {% if session['username'] %}
-                <!-- <span class="navbar-text"></span> -->
                 <ul class="nav-logout">
                   <li class="account"><a href="{{ url_for('account') }}">Account</a></li>
                   <li class="logout">
@@ -42,18 +41,10 @@
                 </ul>
                 {% endif %}
               </div>
-
-              <!-- <div class="signup-logout"></div>
-                {% if session['email'] %}
-                <ul class="nav-logout">
-                  <li class="account"><a href="{{ url_for('account') }}">Account</a></li>
-                </ul>
-                {% endif %}
-              </div> -->
             </div>
           </nav>
-
         </header>
+
 
       <main>
         <div class="navbar">
