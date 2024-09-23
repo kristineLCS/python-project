@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Cordon Remy!</title>
-</head>
+{% extends "base.html" %}
 
-<body>
-  <nav>
-    <ul>
-        <li>Home</li>
-        <li>Catergory</li>
-        <li>Log-in / Sign-up</li>
-        <!-- account page will pop up when logged in or signed up (5th html file) -->
-        <li>Contact</li>
-    </ul>
-  </nav>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
+{% endblock %}
 
-  <header>
-    <h1>Welcome to Cordon Remy!</h1>
-  </header>
+{% block content %}
+  <h1 class="header-h1">Hi {{ session ['username'] }} !</h1>
 
-  <main>
+  <h3>Recipes</h3>
 
-  </main>
+<div class="post-container">
 
-  <footer>
+</div>
 
-  </footer>
-</body>
-</html>
+{% endblock %}
