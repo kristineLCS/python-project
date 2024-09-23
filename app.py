@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, session
+from recipes import recipes, get_recipe_by_id
 
 app = Flask(__name__, static_folder='static')
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -59,93 +60,26 @@ def logout():
 
     return redirect(url_for("home"))
 
-# @app.route('/status', methods=['post'])
-# def set_status():
-#     """Set the status of the current user.
-#     """
-#     # If the user is not logged in, redirect to the login page.
-#     if 'username' not in session:
-#         return redirect(url_for('login'))
-
-#     # Get the status from the form field.
-#     status = request.form['status']
-
-#     # Get the username from the session.
-#     # Note this also means a user can only set their own status.
-#     username = session['username']
-
-#     # Update the status in the user datastore.
-#     user_datastore[username] = status
-
-#     # Redirect to the home page.
-#     return redirect(url_for('home'))
-
-# Breakfast Page
 @app.route('/breakfast')
-def breakfast():
-    return render_template('breakfast.html')
+def show_breakfast_recipes():
+    return render_template('breakfast.html', recipes=recipes['breakfast'])
 
-# Mains Page
 @app.route('/mains')
-def mains():
-    return render_template('main.html')
+def show_mains_recipes():
+    return render_template('mains.html', recipes=recipes['mains'])
 
-# Dessert Page
 @app.route('/dessert')
-def dessert():
-    return render_template('dessert.html')
+def show_dessert_recipes():
+    return render_template('dessert.html', recipes=recipes['dessert'])
 
-
-
-
-
-# Route for breakfast category with recipe id
-# @app.route('/breakfast/<int:id>')
-# def breakfast(id):
-#     # Fetch recipe by id from breakfast recipes
-#     recipe = get_breakfast_recipe_by_id(id)
-#     return render_template('breakfast.html', recipe=recipe)
-
-# # Route for mains category with recipe id
-# @app.route('/mains/<int:id>')
-# def mains(id):
-#     # Fetch recipe by id from mains recipes
-#     recipe = get_main_recipe_by_id(id)
-#     return render_template('mains.html', recipe=recipe)
-
-# # Route for dessert category with recipe id
-# @app.route('/dessert/<int:id>')
-# def dessert(id):
-#     # Fetch recipe by id from dessert recipes
-#     recipe = get_dessert_recipe_by_id(id)
-#     return render_template('dessert.html', recipe=recipe)
-
-# def get_breakfast_recipe_by_id(id):
-#     # Placeholder function to get a recipe by id for breakfast
-#     # You should replace this with actual data fetching logic
-#     recipes = {
-#         1: 'Pancakes',
-#         2: 'French Toast'
-#     }
-#     return recipes.get(id, 'Recipe not found')
-
-# def get_main_recipe_by_id(id):
-#     # Placeholder function to get a recipe by id for mains
-#     # You should replace this with actual data fetching logic
-#     recipes = {
-#         1: 'Spaghetti Bolognese',
-#         2: 'Chicken Curry'
-#     }
-#     return recipes.get(id, 'Recipe not found')
-
-# def get_dessert_recipe_by_id(id):
-#     # Placeholder function to get a recipe by id for dessert
-#     # You should replace this with actual data fetching logic
-#     recipes = {
-#         1: 'Chocolate Cake',
-#         2: 'Apple Pie'
-#     }
-#     return recipes.get(id, 'Recipe not found')
+@app.route('/recipe/<int:recipe_id>')
+def recipe_page(recipe_id):
+    recipe = get_recipe_by_id(recipe_id)
+    if recipe:
+        return render_template('recipes.html', recipe=recipe)
+    else:
+        return "Recipe not found", 404
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
