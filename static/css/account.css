@@ -1,4 +1,87 @@
-h1, h3 {
+h1, h2, h3, label {
+    font-family: Helvetica, Arial, sans-serif;
     margin-left: 20px;
     margin-top: 50px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.post-container {
+    display: flex;
+}
+
+.title {
+    margin-left: 150px;
+}
+
+.category {
+    margin-top: 25px;
+    margin-left: 150px;
+
+}
+
+.servings {
+    margin-top: 25px;
+    margin-left: 150px;
+
+}
+
+.vegan {
+    margin-top: 25px;
+    margin-left: 150px;
+
+}
+
+.instructions {
+    margin-top: 25px;
+    margin-left: 150px;
+
+}
+
+#title {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    display: flex;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    height: 25px
+}
+
+#add-title {
+    margin-left: 200px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+#servings {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    display: flex;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    height: 25px
+
+}
+
+#add-servings {
+    margin-left: 200px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+#add-recipe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 55px;
+    margin-left: 350px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    height: 30px;
 }

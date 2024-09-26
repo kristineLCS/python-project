@@ -26,13 +26,17 @@
               </ul>
 
               <div class="login-logout">
-                {% if session['username'] %}
-                <ul class="nav-logout">
-                  <li class="account"><a href="{{ url_for('account') }}">Account</a></li>
-                  <li class="logout">
-                    <a class="logout-link active" href="{{ url_for('logout') }}">Logout</a>
-                  </li>
-                </ul>
+                {% if session.get('username') %}
+                  {% if session.get('is_admin') %}
+                  <ul class="nav-logout">
+                    <li class="account">
+                      <a href="{{ url_for('admin_account') }}">Account</a>
+                    </li>
+                    {% endif %}
+                    <li class="logout">
+                      <a class="logout-link active" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                  </ul>
                 {% else %}
                 <ul class="nav-login">
                   <li class="login">

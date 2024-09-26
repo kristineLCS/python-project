@@ -89,7 +89,7 @@ html, body {
 /* End of Header */
 
 /* Start of nav */
-input[type=text] {
+.searchbar {
     background-color: rgba(255, 255, 255, 0.381);
     border: 0px;
     text-decoration: none;
@@ -244,6 +244,12 @@ h1, h2, p, li{
 a {
     color: black;
 }
+
+main {
+    flex: 1;
+}
+/* Start of main */
+
 
 /* Footer */
 footer {

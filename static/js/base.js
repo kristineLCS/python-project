@@ -20,7 +20,7 @@ function hideSidebarBtn() {
 
 
 // Sign-up validation 
-const signup = document.getElementById('signup');
+const signupForm = document.getElementById('signup');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const emailError = document.getElementById('email-error');
@@ -81,3 +81,63 @@ signupForm.addEventListener('submit', function(event) {
         formError.style.display = 'none'; // Hide the form-wide error if all inputs are valid
     }
 });
+
+
+// Comment section
+const commentInput = document.getElementById("comment");
+const commentList = document.getElementById("comment-list");
+const commentButton = document.getElementById("commentbtn");
+
+// Add event listener to the button
+commentButton.addEventListener('click', function() {
+    console.log('Button clicked');
+    addComment();
+});
+
+// Function to add a comment
+function addComment() {
+    console.log("Add Comment button clicked!");
+
+    const li = document.createElement('li');
+    li.innerText = "Test comment";  // Add a static comment
+    commentList.appendChild(li);
+    console.log("Static comment added");
+
+    // Create the delete button (X)
+    const span = document.createElement('span');
+    span.innerHTML = '\u00d7';
+    span.className = 'delete-btn';
+    li.appendChild(span);
+
+    commentInput.value = '';  // Clear the input field
+
+    saveComments();
+}
+
+
+
+// Event listener for crossing out or deleting comments
+commentList.addEventListener('click', function(e) {
+    if (e.target.tagName === "SPAN") {
+        e.target.parentElement.remove();  // Remove the comment (li element)
+        saveComments();  // Save updated comment list
+    }
+}, false);
+
+// Function to save comments to localStorage
+function saveComments() {
+    try {
+        localStorage.setItem("comments", commentList.innerHTML);
+    } catch (e) {
+        console.error("Could not save comments to localStorage", e);
+    }
+}
+
+
+// Function to load comments from localStorage on page load
+function showComments() {
+    commentList.innerHTML = localStorage.getItem("comments");
+}
+
+// Call showComments when the page loads to show saved comments
+showComments();

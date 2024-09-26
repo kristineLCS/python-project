@@ -69,3 +69,40 @@ ul {
     font-style: italic;
     color: #666;
 }
+
+
+/* Start of comments */
+.comment-container {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#comment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    margin-right: 10px;
+    height: 20px;
+    min-width: 200px;
+    flex: 1;
+}
+#commentbtn {
+    border: 1px solid #000000;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.addcomment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+/* End of comments */

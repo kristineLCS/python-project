@@ -13,31 +13,21 @@
 
           <form action="/signup" method="post" id="signup">
 
-            <!-- <div class="input-field"> -->
-              <label for="email">Email</label>
-              <input type="text" id="email" name="email" placeholder="Enter email" required>
-              <div id="email-error">Invalid email address</div>
-            <!-- </div> -->
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Enter email" required>
+            <div id="email-error">Invalid email address</div>
 
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter username" required>
 
-            <!-- <div class="input-field"> -->
-              <label for="passowrd">Password</label>
-              <input type="text" id="password" name="password" placeholder="********" required>
-              <div id="password-error" >Password must be 8 characters or more</div>
+            <label for="passowrd">Password</label>
+            <input type="text" id="password" name="password" placeholder="********" required>
+            <div id="password-error" >Password must be 8 characters or more</div>
 
-            <!-- </div> -->
 
-            <!-- <div class="input-field"> -->
             <button type="submit" class="submitbtn">Sign-up</button>
-            <!-- </div> -->
 
             <div id="form-error" class="error">Please fix the errors before submitting the form.</div>
-
-            <!-- {% if error %}
-            <div class="error-message">{{ error }}</div>
-            {% endif %} -->
 
           </form>
 
