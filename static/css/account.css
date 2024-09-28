@@ -18,10 +18,19 @@ h2 {
     margin-left: 150px;
 }
 
+.author {
+    margin-left: 150px;
+}
+
 .category {
     margin-top: 25px;
     margin-left: 150px;
 
+}
+
+.photo {
+    margin-top: 35px;
+    margin-left: 150px;
 }
 
 .servings {
@@ -31,6 +40,12 @@ h2 {
 }
 
 .vegan {
+    margin-top: 25px;
+    margin-left: 150px;
+
+}
+
+.ingredients {
     margin-top: 25px;
     margin-left: 150px;
 
@@ -46,33 +61,37 @@ h2 {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     display: flex;
-    margin-top: 35px;
+    margin-top: 15px;
     margin-bottom: 15px;
     margin-left: 20px;
     height: 25px
 }
 
-#add-title {
-    margin-left: 200px;
+#author {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    height: 25px
+}
+
+#photo-preview {
+    display: none;
+    width: 200px;
+    margin-top: 10px;
 }
 
 #servings {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     display: flex;
-    margin-top: 35px;
+    margin-top: 15px;
     margin-bottom: 15px;
     margin-left: 20px;
     height: 25px
 
-}
-
-#add-servings {
-    margin-left: 200px;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 5px;
 }
 
 #add-recipe {
@@ -84,4 +103,5 @@ h2 {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     height: 30px;
+    cursor: pointer;
 }

@@ -19,32 +19,46 @@
   </ul>
 
   <div class="post-container">
-    <form method="POST" action="/admin/account">
+    <form method="POST" id="recipe-form" enctype="multipart/form-data">
       <div class="title">
         <label for="title">Recipe Title:</label>
         <input type="text" id="title" name="title" placeholder="Title" required>
-        <button type="submit" id="add-title">Add Title</button>
+      </div>
+
+      <div class="author">
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" placeholder="author" required>
       </div>
 
       <div class="category">
         <label for="category">Category:</label>
         <select id="category" name="category" required>
-            <option value="breakfast">Breakfast</option>
-            <option value="mains">Mains</option>
-            <option value="dessert">Dessert</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="mains">Mains</option>
+          <option value="dessert">Dessert</option>
         </select>
+      </div>
+
+      <div class="photo">
+        <label for="photo">Upload Photo:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+
+        <img id="photo-preview" src="." alt="">
       </div>
 
       <div class="servings">
         <label for="servings">Servings:</label>
         <input type="text" id="servings" name="servings" placeholder="Servings" required>
-        <button type="submit" id="add-servings">Add Title</button>
       </div>
-
 
       <div class="vegan">
         <label for="vegan">Vegan:</label>
         <input type="checkbox" id="vegan" name="vegan" value="Yes">
+      </div>
+
+      <div class="ingredients">
+        <label for="ingredients">Ingredients:</label>
+        <textarea id="ingredients" name="ingredients" required></textarea>
       </div>
 
       <div class="instructions">
@@ -53,8 +67,8 @@
       </div>
 
       <button type="submit" id="add-recipe">Add Recipe</button>
-  </form>
-
+    </form>
   </div>
+
 
 {% endblock %}
