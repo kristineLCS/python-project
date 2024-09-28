@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const showSidebar = document.getElementById('showsidebar');
     const hideSidebar = document.getElementById('hidesidebar');
     const mySideBar = document.getElementById('mysidebar');
-    const sideBar = document.querySelector('.sidebar');
-    const nav = document.querySelector('nav');
 
     showSidebar.addEventListener('click', showSidebarBtn);
     function showSidebarBtn() {
@@ -82,50 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-
-    // Adding photos for recipes
-    const recipeForm = document.getElementById('recipe-form');
-    const photoInput = document.getElementById('photo');
-    const photoPreview = document.getElementById('photo-preview');
-
-    // Preview the photo when selected
-    photoInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                photoPreview.src = e.target.result;
-                photoPreview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    recipeForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent page reload
-        
-        // Create a FormData object to handle file and text data
-        const formData = new FormData(recipeForm);
-        
-        // Send form data to the Flask server via AJAX
-        fetch('/upload_recipe', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Recipe submitted successfully!'); // Log success
-                // Optionally, display the uploaded recipe or reset the form
-                recipeForm.reset();
-                photoPreview.style.display = 'none';
-            } else {
-                console.error('Error submitting recipe'); // Log error message
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
 
 
     // Comment section

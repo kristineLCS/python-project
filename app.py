@@ -4,7 +4,6 @@ from recipes import recipes, get_recipe_by_id
 
 app = Flask(__name__, static_folder='static')
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-
 app.secret_key = 'secret_key'
 
 user_datastore = {
@@ -12,6 +11,13 @@ user_datastore = {
     'user1': {'password': 'userpassword', 'is_admin': False}
 }
 
+# Photo upload configuration
+UPLOAD_FOLDER = 'static/uploads/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Make sure the upload folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 # Home Page
 @app.route('/')
@@ -36,11 +42,9 @@ def login():
             # Redirect regular users to the home page
             return redirect(url_for('home'))
         else:
-            # Handle invalid login
             return "Invalid username or password", 401
         
     return render_template('login.html')
-
 
 # Signup Page
 @app.route('/signup', methods=['GET', 'POST'])
@@ -53,7 +57,6 @@ def signup():
             session['username'] = username
             return redirect(url_for('home'))
     
-    # Render the signup page for GET request
     return render_template('sign-up.html')
 
 @app.route('/admin/account', methods=['GET', 'POST'])
@@ -66,27 +69,30 @@ def admin_account():
         recipe_title = request.form['title']
         recipe_instructions = request.form['instructions']
         recipe_category = request.form['category']
-        # recipe_author = session.get('username', 'Admin')
         recipe_servings = request.form['servings']
         recipe_vegan = request.form.get('vegan', 'No') 
 
-        # Loops over all the lists of recipes in each category. Then, loops over each recipe r in the current category list cat.
-        new_id = max([r['id'] for cat in recipes.values() for r in cat]) + 1
-
-        # Create the new recipe dictionary
+        # Create the new recipe dictionary without photo
+        new_id = max([r['id'] for cat in recipes.values() for r in cat], default=0) + 1
         new_recipe = {
             'id': new_id,
             'title': recipe_title,
             'category': recipe_category,
-            # 'author': recipe_author,
             'servings': recipe_servings,
             'vegan': recipe_vegan,
             'ingredients': [],
-            'instructions': recipe_instructions.split("\n")
+            'instructions': recipe_instructions.split("\n"),
+            # 'photo' is removed
         }
 
         # Add the new recipe to the corresponding category
+        if recipe_category not in recipes:
+            recipes[recipe_category] = []  # Create the category if it doesn't exist
+
         recipes[recipe_category].append(new_recipe)
+
+        return redirect(url_for('admin_account'))  # Redirect after successful upload
+
 
     return render_template('admin_account.html')
 
@@ -94,7 +100,6 @@ def admin_account():
 @app.route('/logout')
 def logout():
     session.pop("username", None)
-
     return redirect(url_for("home"))
 
 @app.route('/breakfast')
@@ -119,74 +124,38 @@ def recipe_page(recipe_id):
     if not recipe:
         return "Recipe not found", 404
 
-    # Render the recipe page and pass the recipe, no need for comments
+    # Render the recipe page and pass the recipe
     return render_template('recipes.html', recipe=recipe)
-
-
-# Photo upload
-UPLOAD_FOLDER = 'static/uploads/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Make sure the upload folder exists
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
 
 @app.route('/upload_recipe', methods=['POST'])
 def upload_recipe():
-    # Get form data
-    title = request.form.get('title')
-    # author = request.form.get('author')
-    category = request.form.get('category')
-    servings = request.form.get('servings')
-    vegan = request.form.get('vegan', 'No')  # Default to 'No' if unchecked
-    ingredients = request.form.get('ingredients')
-    instructions = request.form.get('instructions')
-
-    # Handle file upload
-    if 'photo' not in request.files:
-        return jsonify({'success': False, 'message': 'No photo part'})
-
-    photo = request.files['photo']
-
-    if photo.filename == '':
-        return jsonify({'success': False, 'message': 'No selected photo'})
-
-    if photo:
-        # Save the photo file in the 'static/uploads/' directory
-        photo_filename = os.path.join(app.config['UPLOAD_FOLDER'], photo.filename)
-        photo.save(photo_filename)  # Save the file
-
-        # Store the relative file path (so it can be used in the HTML)
-        photo_url = f'/static/uploads/{photo.filename}'
-
-        # Create a new recipe object
-        new_recipe = {
-            'title': title,
-            # 'author': author,
-            'photo': photo_url,  # Store the relative URL of the uploaded photo
-            'category': category,
-            'servings': servings,
-            'vegan': vegan,
-            'ingredients': ingredients.split("\n"),  # Assuming ingredients are entered line by line
-            'instructions': instructions.split("\n")  # Assuming instructions are entered line by line
-        }
-
-        # Save `new_recipe` to the recipes dictionary under the appropriate category
-        if category not in recipes:
-            recipes[category] = []  # Create the category if it doesn't exist
-        
-        # Assign a new unique ID for the recipe
-        new_id = max([r['id'] for cat in recipes.values() for r in cat], default=0) + 1
-        new_recipe['id'] = new_id  # Add a unique ID to the recipe
-
-        # Append the new recipe to the correct category
-        recipes[category].append(new_recipe)
-
-        return jsonify({'success': True, 'message': 'Recipe uploaded successfully!'})
-
-    return jsonify({'success': False, 'message': 'Failed to upload recipe'})
+    return jsonify({'success': False, 'message': 'Use the admin_account route to upload recipes.'})
 
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query', '').lower()  # Get the search query and convert to lowercase for case-insensitive search
+
+    if not query:
+        return redirect(url_for('home'))  # If no query, redirect to home
+
+    search_results = []
+
+    # Search through all the recipes in all categories
+    for category, recipe_list in recipes.items():
+        for recipe in recipe_list:
+            # Check if the query matches the recipe title, category, or vegan status
+            if (query in recipe['title'].lower() or
+                query in recipe['category'].lower() or
+                (query == 'vegan' and recipe['vegan'].lower() == 'yes')):
+                search_results.append(recipe)
+
+    # If no results found, you can add a message or handle it in the template
+    if not search_results:
+        return render_template('search_results.html', message="No recipes found.", recipes=search_results)
+
+    # Render the results on a separate template
+    return render_template('search_results.html', recipes=search_results)
 
 
 if __name__ == '__main__':

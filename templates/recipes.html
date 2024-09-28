@@ -8,7 +8,6 @@
 
 {% block content %}
     <h1>{{ recipe.category }} : {{ recipe.title }}</h1>
-    <!-- <small>Posted by {{ recipe.author }}</small> -->
 
     {% if recipe.photo %}
     <img id="photo" src="{{ recipe.photo }}" alt="{{ recipe.title }}">
@@ -19,7 +18,7 @@
 
 
     <h2>Ingredients</h2>
-    <ul>
+    <ul class="ingredients-list">
         {% for ingredient in recipe.ingredients %}
             <li>{{ ingredient }}</li>
         {% endfor %}
@@ -38,7 +37,7 @@
         <div class="comment-area">
             <div class="addcomment">
                 <input type="text" id="comment" placeholder="Comment..">
-                <button id="commentbtn" type="button">Add Comment</button>
+                <button id="commentbtn" type="button">Comment</button>
             </div>
 
             <ul id="comment-list"></ul>

@@ -7,11 +7,10 @@
 {% block content %}
     <h1>Dessert Recipes</h1>
 
-    <ul>
+    <ul class="food-list">
         {% for recipe in recipes %}
             <li>
                 <h2><a href="{{ url_for('recipe_page', recipe_id=recipe.id) }}">{{ recipe.title }}</a></h2>
-                <!-- <p>By: {{ recipe.author }}</p> -->
             </li>
         {% endfor %}
     </ul>

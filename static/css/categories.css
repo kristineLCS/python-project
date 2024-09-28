@@ -23,6 +23,26 @@ h3 {
 
 }
 
+.food-list {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    flex-direction: column;
+    list-style-type: square;
+    padding: 0;
+    margin-left: 30px;
+}
+
+.ingredients-list {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    flex-direction: column;
+    list-style-type: square;
+    padding: 0;
+    margin-left: 30px;
+}
+
 title {
     font-size: 2em;
     color: #333;
@@ -38,7 +58,7 @@ small {
     align-self: flex-start;
 }
 
-ul {
+/* ul{
     display: flex;
     justify-content: center;
     align-self: flex-start;
@@ -46,7 +66,7 @@ ul {
     list-style-type: square;
     padding: 0;
     margin-left: 30px;
-}
+} */
 
 .recipe-item {
     border: 1px solid #ddd;
@@ -72,7 +92,7 @@ ul {
 
 #photo {
     max-width: 100%;
-    height: auto
+    height: auto;
 }
 
 /* Start of comments */
@@ -91,13 +111,15 @@ ul {
     border: 1px solid #000000;
     border-radius: 5px;
     margin-right: 10px;
-    height: 20px;
+    height: 40px;
     min-width: 200px;
     flex: 1;
 }
+
 #commentbtn {
     border: 1px solid #000000;
     color: #000000;
+    background-color: #fdfdfd;
     cursor: pointer;
     border-radius: 5px;
     padding: 5px 10px;
@@ -107,6 +129,37 @@ ul {
     align-items: center;
     justify-content: center;
     border-radius: 5px;
+}
+
+.comment-area {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+}
+
+#comment-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.comment-li {
+    /* border: 1px solid rgba(0, 0, 0, 0.429); */
+    border-bottom: 1px solid rgba(65, 65, 65, 0.429);
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+
+.delete-btn {
+    position: absolute;
+    right: 90px;
 }
 
 /* End of comments */
