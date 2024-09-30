@@ -34,14 +34,17 @@
 
     <h2 class="comments-header">Comments</h2>
     <div class="comment-container">
-        <div class="comment-area">
-            <div class="addcomment">
-                <input type="text" id="comment" placeholder="Comment..">
-                <button id="commentbtn" type="button">Comment</button>
+        {% if session.username %}
+            <div class="comment-area">
+                <div class="addcomment">
+                    <input type="text" id="comment" placeholder="Comment..">
+                    <button id="commentbtn" type="button">Comment</button>
+                </div>
+        {% else %}
+            <p id="login-message"><a href="{{ url_for('login') }}" id="comment-login">Login</a> or <a href="{{ url_for('signup') }}" id="comment-signup">sign up</a> to comment.</p>
+        {% endif %}
+                <ul id="comment-list"></ul>
             </div>
-
-            <ul id="comment-list"></ul>
-        </div>
     </div>
 
 

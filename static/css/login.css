@@ -4,8 +4,11 @@ h1, h4{
 }
 
 h4 {
-    position: absolute;
-    top: 650px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-self: baseline;
     font-weight: normal;
     color: black;
 }

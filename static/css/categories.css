@@ -127,7 +127,7 @@ small {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 #comment{
@@ -179,6 +179,11 @@ small {
     align-items: center;
     margin-top: 25px;
 }
+
+#comment-login, #comment-signup{
+    color: rgb(0, 15, 222);
+}
+
 
 .delete-btn {
     display: flex;
