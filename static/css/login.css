@@ -27,20 +27,17 @@ h4 {
 }
 
 .formbox {
-    background-color: rgba(255, 255, 255, 0.858);
+    background-color: rgb(239, 246, 252);
     border: 1px solid rgb(0, 0, 0);
     border-radius: 20px;
     padding: 20px;
     margin-left: 30px;
     margin-right: 30px;
-    /* flex: 1 1 300px; */
     min-width: 400px;
     min-height: 650px;
     display: flex;
-    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
-    /* gap: 10px; */
 }
 
 .loginbox {
@@ -48,7 +45,6 @@ h4 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* max-width: 50%; */
 }
 
 #login {

@@ -1,8 +1,9 @@
 /* Start of header */
 .header-h1 {
-    /* position: absolute;
-    top: 80px;
-    left: 50px; */
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 40px;
+    color: rgb(255, 128, 9);
     display: flex;
     justify-content: center;
     align-self: center;
@@ -10,7 +11,7 @@
 }
 
 .gallery {
-    margin-top: 150px;
+    margin-top: 100px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -30,6 +31,11 @@ h1, h2{
     position: absolute;
     top: 130px;
     left: 50px;
+}
+
+h3 {
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+
 }
 
 .breakfastcontainer, .mainscontainer, .dessertcontainer {
@@ -75,18 +81,61 @@ h1, h2{
     padding-bottom: 5px;
 }
 
-.newrecipes {
+.latest-recipe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-style: italic;
+    font-size: 20px;
     margin-left: 50px;
     margin-right: 50px;
 
+}
+.latestrecipe-heading {
+    text-decoration: underline;
+}
+
+.view-recipes {
+    text-decoration: underline;
+
+}
+.norecipe {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-style: none;
 }
 /* End of main */
 
 /* Start of aside */
 
 .about {
-    margin-left: 50px;
-    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
 
+.paragraphs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+.follow{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.socials {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 /* End of aside */

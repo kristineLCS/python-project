@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Cordon Remy!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}
     {% endblock %}
   </head>
 
   <body>
-    <div id="background">
+    <div class="background">
         <header>
           <div class="graphic">
             <a href="{{ url_for('home') }}"><img id="navgraphic" src="{{ url_for('static', filename='images/graphic.png') }}" alt="Cordon Remy" width="200px" height="40px"></a>
@@ -20,33 +20,35 @@
             <div class="sidebar" id="mysidebar">
               <button type="button" id="hidesidebar"><img src="{{ url_for('static', filename='images/close-sidebar-btn.png') }}" alt="sidebar button" height="24px" width="24px"></button>
 
-              <form action="{{ url_for('search') }}" method="GET">
-                <input class="searchbar" type="text" name="query" placeholder="Search..." required>
-                <button type="submit" id="searchbtn"><img src="{{ url_for('static', filename='images/search-btn.png') }}" alt="search button" height="24px" width="24px"></button>
-              </form>
+              <!-- <div class="searchbar-container"> -->
+                <form action="{{ url_for('search') }}" method="GET">
+                  <input class="searchbar" type="text" name="query" placeholder="Search..." required>
+                  <button type="submit" id="searchbtn"><img class="searchbtn" src="{{ url_for('static', filename='images/search-btn.png') }}" alt="search button" height="24px" width="24px"></button>
+                </form>
+              <!-- </div> -->
 
-              <ul>
+              <ul class="home-container">
                 <li class="home"><a href="{{ url_for('home') }}">Home</a></li>
               </ul>
 
               <div class="login-logout">
                 {% if session.get('username') %}
-                  {% if session.get('is_admin') %}
                   <ul class="nav-logout">
-                    <li class="account">
-                      <a href="{{ url_for('admin_account') }}">Account</a>
-                    </li>
+                    {% if session.get('is_admin') %}
+                      <li class="account">
+                        <a href="{{ url_for('admin_account') }}">Account</a>
+                      </li>
                     {% endif %}
                     <li class="logout">
                       <a class="logout-link active" href="{{ url_for('logout') }}">Logout</a>
                     </li>
                   </ul>
                 {% else %}
-                <ul class="nav-login">
-                  <li class="login">
-                    <a class="login-link active" href="{{ url_for('login') }}">Login</a>
-                  </li>
-                </ul>
+                  <ul class="nav-login">
+                    <li class="login">
+                      <a class="login-link active" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                  </ul>
                 {% endif %}
               </div>
             </div>
@@ -69,11 +71,10 @@
       </aside>
 
       <footer>
-        <p>Last updated: 30/09/24</p>
-        <p>Copyright &copy; 2024</p>
+        <p>Last updated: 30/09/24 &copy; 2024</p>
       </footer>
 
-      <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     </div>
   </body>
 </html>

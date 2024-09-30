@@ -7,8 +7,8 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.secret_key = 'secret_key'
 
 user_datastore = {
-    'admin': {'password': 'adminpassword', 'is_admin': True},
-    'user1': {'password': 'userpassword', 'is_admin': False}
+    'admin': {'password': 'adminpass', 'is_admin': True},
+    'user': {'password': 'userpassword', 'is_admin': False}
 }
 
 # Photo upload configuration
@@ -23,7 +23,9 @@ if not os.path.exists(UPLOAD_FOLDER):
 @app.route('/')
 def home():
     """Home page for the app."""
-    return render_template("index.html")
+    latest_recipe = get_latest_recipe()
+    return render_template("index.html", latest_recipe=latest_recipe)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -31,14 +33,16 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = user_datastore.get(username)
-
+        
+        # Check if the user exists and the password matches
         if user and user['password'] == password:
             session['username'] = username
             session['is_admin'] = user.get('is_admin', False)
-
-            if user['is_admin']:
+            
+            # Redirect admin to the admin account page
+            if session['is_admin']:
                 return redirect(url_for('admin_account'))
-
+            
             # Redirect regular users to the home page
             return redirect(url_for('home'))
         else:
@@ -46,18 +50,32 @@ def login():
         
     return render_template('login.html')
 
+
+
 # Signup Page
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username not in user_datastore:
-            user_datastore[username] = {'password': password, 'is_admin': False}
-            session['username'] = username
-            return redirect(url_for('home'))
+        
+        # Prevent the use of reserved admin credentials
+        if username == 'admin' or password == 'adminpassword':
+            return "Username or password not allowed", 403
+        
+        # Check if the username is already taken
+        if username in user_datastore:
+            return "Username already exists", 409
+        
+        # Add the new user to the datastore
+        user_datastore[username] = {'password': password, 'is_admin': False}  # Set new user as non-admin
+        session['username'] = username
+        session['is_admin'] = False  # Regular user
+        
+        return redirect(url_for('home'))
     
     return render_template('sign-up.html')
+
 
 @app.route('/admin/account', methods=['GET', 'POST'])
 def admin_account():
@@ -71,8 +89,9 @@ def admin_account():
         recipe_category = request.form['category']
         recipe_servings = request.form['servings']
         recipe_vegan = request.form.get('vegan', 'No') 
+        recipe_ingredients = request.form['ingredients']  # Capture the ingredients
 
-        # Create the new recipe dictionary without photo
+        # Create the new recipe dictionary
         new_id = max([r['id'] for cat in recipes.values() for r in cat], default=0) + 1
         new_recipe = {
             'id': new_id,
@@ -80,9 +99,8 @@ def admin_account():
             'category': recipe_category,
             'servings': recipe_servings,
             'vegan': recipe_vegan,
-            'ingredients': [],
-            'instructions': recipe_instructions.split("\n"),
-            # 'photo' is removed
+            'ingredients': recipe_ingredients.split("\n"),  # Store ingredients as a list
+            'instructions': recipe_instructions.split("\n"),  # Store instructions as a list
         }
 
         # Add the new recipe to the corresponding category
@@ -93,8 +111,17 @@ def admin_account():
 
         return redirect(url_for('admin_account'))  # Redirect after successful upload
 
-
     return render_template('admin_account.html')
+
+
+#  Latest Recipe Section
+def get_latest_recipe():
+    all_recipes = [r for cat in recipes.values() for r in cat]  # Flatten the recipe lists
+    if not all_recipes:
+        return None  # No recipes available
+    latest_recipe = max(all_recipes, key=lambda x: x['id'])  # Get the recipe with the highest ID
+    return latest_recipe
+
 
 
 @app.route('/logout')

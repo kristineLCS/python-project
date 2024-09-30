@@ -23,7 +23,8 @@
         grid-area: f;
     }
 
-#background {
+.background {
+    flex: 1;
     display: grid;
     grid-template:
     "n "
@@ -36,7 +37,7 @@
 
 /* Start of Media Query */
 @media (min-width: 38em) {
-    #background {
+    .background {
        grid-template:
      " n   n "
      " h   h "
@@ -52,7 +53,7 @@
        flex-direction: column;
        flex-wrap: nowrap;
        }
-    #background {
+    .background {
         grid-template:
        " n   n   n"
        " h   h   h"
@@ -66,12 +67,17 @@
 
 /* Important */
 html, body {
-    /* background-color: aqua; */
+    background-color: rgb(253, 247, 237);
     width: 100%;
     height: 100vh;
     padding: 0;
     margin: 0;
-    /* font-family: Helvetica, Arial, sans-serif; */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Start of Header */
@@ -79,7 +85,6 @@ html, body {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: none;
     border: none;
     margin-top: 25px;
     margin-left: 35px
@@ -94,14 +99,22 @@ html, body {
     border: 0px;
     text-decoration: none;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: row;
-    width: 250px;
+    width: 180px;
+    height: 30px;
     max-height: 35px;
     margin-top: 80px;
     margin-left: 15px;
 }
+
+/* .searchbar-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+} */
+
 
 ::placeholder {
     color: black;
@@ -113,15 +126,25 @@ html, body {
     max-height: 35px;
     margin-top: 80px;
     margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    /* margin-left: 210px; */
+    margin-top: 0;
 }
 
-#searchbtn:hover {
-    background-color: rgba(255, 255, 255, 0.647);
-    /* border-radius: 0px; */
+.searchbtn {
+    border: 0px;
+    background-color: #dfdfdf00;
+    max-height: 35px;
+    margin-top: 80px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin-left: 200px;
+    margin-bottom: 35px;
 }
-/* .nav-ul {
-    margin-right: 0px;
-} */
 
 ul {
     list-style-type: none;
@@ -129,7 +152,6 @@ ul {
     justify-content: flex-end;
     flex-direction: row;
     flex-wrap: wrap;
-    /* justify-content: space-around; */
 }
 
 li {
@@ -140,6 +162,7 @@ li {
 a {
     text-decoration: none;
 }
+
 .home {
     list-style-type: none;
     position: absolute;
@@ -147,13 +170,7 @@ a {
     left: 15px;
     color: rgb(0, 0, 0);
 }
-/* .category {
-    list-style-type: none;
-    position: absolute;
-    top: 120px;
-    left: 150px;
-    color: rgb(0, 0, 0);
-} */
+
 .login {
     list-style-type: none;
     position: absolute;
@@ -170,6 +187,11 @@ a {
     color: rgb(0, 0, 0);
 }
 
+.logout {
+    list-style-type: none;
+    margin: 0;
+}
+
 .logout-link {
     list-style-type: none;
     position: absolute;
@@ -177,13 +199,7 @@ a {
     left: 20px;
     color: rgb(0, 0, 0);
 }
-/* .contact {
-    list-style-type: none;
-    position: absolute;
-    top: 220px;
-    left: 165px;
-    color: rgb(0, 0, 0);
-} */
+
 
 .sidebar{
     position: fixed;
@@ -245,9 +261,6 @@ a {
     color: black;
 }
 
-main {
-    flex: 1;
-}
 /* Start of main */
 
 
@@ -257,17 +270,18 @@ footer {
     font-size: small;
     color: black;
     background-color: rgb(255, 255, 255);
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
+    position: relative;
+    text-align: center;
+    width: 100%;
     height:30px;
-
+    position: relative;
+    margin-top: auto;
 }
 
 .footerbox {
     padding-top: 5px;
     padding-bottom: 5px;
-    height: 30px;
+    height: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;

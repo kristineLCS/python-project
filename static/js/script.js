@@ -81,11 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     // Comment section
     const comment = document.getElementById("comment");
     const commentList = document.getElementById("comment-list");
     const commentButton = document.getElementById("commentbtn");
+    const commentArea = document.getElementById("comment-area");
+
 
     if (commentButton) {
         commentButton.addEventListener('click', function() {
@@ -95,17 +96,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addComment() {
+        const commentText = comment.value.trim();
+
+        // Check if the comment is empty
+        if (commentText === '') {
+            return;
+        }
+
         const li = document.createElement('li');
         li.innerText = comment.value;
         commentList.appendChild(li);
         li.className = 'comment-li';
 
         const span = document.createElement('span');
-        span.innerHTML = '\u00d7';  // Unicode for 'X'
+        span.innerHTML = '\u00d7';
         span.className = 'delete-btn';
         li.appendChild(span);
 
-        comment.value = '';  // Clear input
+        comment.value = '';
 
         saveComments();
     }

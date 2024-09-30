@@ -2,35 +2,26 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
   <main>
     <div class="formcontainer">
-      <!-- TO DO:
-          Form validation for login/sign up-->
       <div class="formbox">
         <div class="loginbox">
           <h1 class="main-h1">Login</h1>
 
           <form method="post" id="login">
 
-            <!-- <div class="input-field"> -->
               <label for="username">Username</label>
               <input type="text" id="login-username" name="username" placeholder="Enter username" required>
               <div id="username-error" class="error-message"></div>
-            <!-- </div> -->
 
-            <!-- <div class="input-field"> -->
-              <label for="passowrd">Password</label>
-              <input type="text" id="login-password" name="password" placeholder="********" required>
+              <label for="password">Password</label>
+              <input type="password" id="login-password" name="password" placeholder="********" required>
               <div id="password-error" class="error-message"></div>
-            <!-- </div> -->
 
-            <!-- <div class="input-field"> -->
               <button type="submit" class="submitbtn">Log-in</button>
-            <!-- </div> -->
 
             {% if error %}
             <div class="error-message">{{ error }}</div>
