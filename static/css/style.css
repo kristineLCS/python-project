@@ -99,7 +99,6 @@ body {
     border: 0px;
     text-decoration: none;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: row;
     width: 180px;
@@ -108,13 +107,6 @@ body {
     margin-top: 80px;
     margin-left: 15px;
 }
-
-/* .searchbar-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-} */
-
 
 ::placeholder {
     color: black;
@@ -129,7 +121,6 @@ body {
     display: flex;
     justify-content: flex-end;
     align-self: flex-end;
-    /* margin-left: 210px; */
     margin-top: 0;
 }
 

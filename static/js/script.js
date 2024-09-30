@@ -97,9 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const comment = document.getElementById("comment");
     const commentList = document.getElementById("comment-list");
     const commentButton = document.getElementById("commentbtn");
-    const commentArea = document.getElementById("comment-area");
-
-
 
 
     if (commentButton) {

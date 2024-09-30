@@ -20,12 +20,10 @@
             <div class="sidebar" id="mysidebar">
               <button type="button" id="hidesidebar"><img src="{{ url_for('static', filename='images/close-sidebar-btn.png') }}" alt="sidebar button" height="24px" width="24px"></button>
 
-              <!-- <div class="searchbar-container"> -->
                 <form action="{{ url_for('search') }}" method="GET">
                   <input class="searchbar" type="text" name="query" placeholder="Search..." required>
                   <button type="submit" id="searchbtn"><img class="searchbtn" src="{{ url_for('static', filename='images/search-btn.png') }}" alt="search button" height="24px" width="24px"></button>
                 </form>
-              <!-- </div> -->
 
               <ul class="home-container">
                 <li class="home"><a href="{{ url_for('home') }}">Home</a></li>
